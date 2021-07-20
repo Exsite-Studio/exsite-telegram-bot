@@ -35,7 +35,7 @@ bot.command("new", async (ctx) => {
 bot.launch();
 
 // this unite Express with webHook from Telegraf
-app.use(bot.webhookCallback("/bot"));
+app.use(bot.webhookCallback(`/telegraf/${bot.secretPathComponent()}`));
 
 // this will set our webhook for our bot
 bot.telegram.setWebhook(`${CURRENT_URL}/telegraf/${bot.secretPathComponent()}`);
