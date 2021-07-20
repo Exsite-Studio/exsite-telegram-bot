@@ -35,8 +35,12 @@ bot.command("new", async (ctx) => {
   if (messages && authorized) {
     messages.map((message) => {
       const text = message.name
-        ? `${message.name} with the email of: ${message.email}, sent you: ${message.message}`
-        : `${message.email} Wants to get in touch with Exsite!`;
+        ? `${message.name} with the email of: ${message.email}, sent you: ${message.message}
+
+        Sent at: ${message.submissionDate}`
+        : `${message.email} Wants to get in touch with Exsite!
+
+        Sent at: ${message.submissionDate}`;
       bot.telegram.sendMessage(ctx.chat.id, text, {});
     });
   } else {
