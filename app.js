@@ -43,6 +43,6 @@ app.get("/", (req, res) => {
 // this unite Express with webHook from Telegraf
 app.use(bot.webhookCallback(`/bot${process.env.TELEGRAM_TOKEN}`));
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`Listen in the port ${PORT}`);
 });
