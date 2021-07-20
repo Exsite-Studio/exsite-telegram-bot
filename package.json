@@ -1,0 +1,16 @@
+{
+  "name": "@pelcro/exsite-bot",
+  "version": "1.0.0",
+  "description": "Exsite's Telegram Bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amr Elsekilly",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "telegraf": "^4.4.0"
+  }
+}
