@@ -32,7 +32,7 @@ bot.command("new", async (ctx) => {
 });
 
 // this will set our webhook for our bot
-bot.telegram.setWebhook(`${CURRENT_URL}/telegraf/${bot.secretPathComponent()}`);
+bot.telegram.setWebhook(`${CURRENT_URL}/bot${process.env.TELEGRAM_TOKEN}`);
 
 const app = express();
 
@@ -41,10 +41,8 @@ app.get("/", (req, res) => {
 });
 
 // this unite Express with webHook from Telegraf
-app.use(bot.webhookCallback(`/telegraf/${bot.secretPathComponent()}`));
+app.use(bot.webhookCallback(`/bot${process.env.TELEGRAM_TOKEN}`));
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Listen in the port ${PORT}`);
 });
-
-// bot.launch();
