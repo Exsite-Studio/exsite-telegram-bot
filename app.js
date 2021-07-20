@@ -39,7 +39,10 @@ app.listen(PORT, "0.0.0.0", () => {
 });
 
 // this unite Express with webHook from Telegraf
-app.use(bot.webhookCallback("/bot"));
+app.use(
+  bot.webhookCallback(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/setwebhook?url=${CURRENT_URL}/bot
+`)
+);
 
 // this will set our webhook for our bot
 bot.telegram.setWebhook(`${CURRENT_URL}/bot`);
