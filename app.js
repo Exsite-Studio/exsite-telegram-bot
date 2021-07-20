@@ -29,7 +29,7 @@ bot.command("start", (ctx) => {
 
 bot.command("new", async (ctx) => {
   const messages = await getMessages();
-  const authorized = isAuthorized(ctx.from);
+  const authorized = isAuthorized(ctx.from.id);
   if (messages && authorized) {
     messages.map((message) => {
       const text = message.name
