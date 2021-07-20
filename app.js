@@ -34,15 +34,16 @@ bot.command("new", async (ctx) => {
 
 bot.launch();
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Listen in the port ${PORT}`);
-});
-
 // this unite Express with webHook from Telegraf
-app.use(
-  bot.webhookCallback(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/setwebhook?url=${CURRENT_URL}/bot
-`)
-);
+app.use(bot.webhookCallback("/bot"));
 
 // this will set our webhook for our bot
 bot.telegram.setWebhook(`${CURRENT_URL}/bot`);
+
+app.get("/", (req, res) => {
+  res.send("Our new tab!!");
+});
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Listen in the port ${PORT}`);
+});
