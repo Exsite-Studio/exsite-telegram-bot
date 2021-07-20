@@ -31,12 +31,7 @@ bot.command("new", async (ctx) => {
   console.log(ctx.message.chat.id);
   const messages = await getMessages();
   const authorized = isAuthorized(ctx.message.chat.id);
-  console.log(
-    "🚀 ~ file: app.js ~ line 34 ~ bot.command ~ authorized",
-    authorized,
-    process.env.CHANNEL_ID,
-    ctx.message.chat.id
-  );
+
   if (messages && authorized) {
     messages.map((message) => {
       const text = message.name
