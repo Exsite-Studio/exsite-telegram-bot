@@ -21,6 +21,7 @@ bot.command("start", (ctx) => {
 
 bot.command("new", async (ctx) => {
   const messages = await getMessages();
+  bot.telegram.sendMessage(ctx.chat.id, "An error happened", {});
   if (messages) {
     messages.map((message) => {
       const text = message.name
