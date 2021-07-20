@@ -7,6 +7,10 @@ const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 const CURRENT_URL = process.env.CURRENT_URL;
 let PORT = process.env.PORT || 3000;
 
+const isAuthorized = (channelId) => {
+  return channelId === process.env.CHANNEL_ID;
+};
+
 const getMessages = () => {
   return axios
     .get(process.env.MESSAGES_API)
@@ -25,13 +29,20 @@ bot.command("start", (ctx) => {
 
 bot.command("new", async (ctx) => {
   const messages = await getMessages();
-  if (messages) {
+  const authorized = isAuthorized(ctx.from);
+  if (messages && authorized) {
     messages.map((message) => {
       const text = message.name
         ? `${message.name} with the email of: ${message.email}, sent you: ${message.message}`
         : `${message.email} Wants to get in touch with Exsite!`;
       bot.telegram.sendMessage(ctx.chat.id, text, {});
     });
+  } else {
+    bot.telegram.sendMessage(
+      ctx.chat.id,
+      "You're not authorized to use the bot!",
+      {}
+    );
   }
 });
 
