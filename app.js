@@ -16,13 +16,15 @@ const getMessages = () => {
 
 bot.command("start", (ctx) => {
   console.log(ctx.from);
-  bot.telegram.sendMessage(ctx.chat.id, "Hello there, it's Exsite Bot!", {});
+  bot.telegram.sendMessage(
+    ctx.chat.id,
+    "Hello there, it's Exsite Studio's Bot!",
+    {}
+  );
 });
 
 bot.command("new", async (ctx) => {
   const messages = await getMessages();
-  console.log("🚀 ~ file: app.js ~ line 24 ~ bot.command ~ messages", messages);
-  bot.telegram.sendMessage(ctx.chat.id, "An error happened", {});
   if (messages) {
     messages.map((message) => {
       const text = message.name
@@ -39,8 +41,7 @@ bot.telegram.setWebhook(`${CURRENT_URL}/bot${process.env.TELEGRAM_TOKEN}`);
 const app = express();
 
 app.get("/", async (req, res) => {
-  const messages = await getMessages();
-  res.send(messages);
+  res.send("Exsite Studio's Telegram Bot");
 });
 
 // this unite Express with webHook from Telegraf
