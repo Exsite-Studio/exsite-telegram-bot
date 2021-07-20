@@ -32,6 +32,14 @@ bot.command("new", async (ctx) => {
   const messages = await getMessages();
   const authorized = isAuthorized(ctx.message.chat.id);
 
+  if (!messages.length) {
+    return bot.telegram.sendMessage(
+      ctx.chat.id,
+      "You don't have any messages yet",
+      {}
+    );
+  }
+
   if (messages && authorized) {
     messages.map((message) => {
       const text = message.name
