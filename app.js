@@ -38,7 +38,7 @@ bot.launch();
 app.use(bot.webhookCallback("/bot"));
 
 // this will set our webhook for our bot
-bot.telegram.setWebhook(`${CURRENT_URL}/bot`);
+bot.telegram.setWebhook(`${CURRENT_URL}/telegraf/${bot.secretPathComponent()}`);
 
 app.get("/", (req, res) => {
   res.send("Our new tab!!");
