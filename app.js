@@ -8,7 +8,7 @@ const CURRENT_URL = process.env.CURRENT_URL;
 let PORT = process.env.PORT || 3000;
 
 const isAuthorized = (channelId) => {
-  return channelId === process.env.CHANNEL_ID;
+  return channelId == process.env.CHANNEL_ID;
 };
 
 const getMessages = () => {
@@ -31,6 +31,10 @@ bot.command("new", async (ctx) => {
   console.log(ctx.message.chat.id);
   const messages = await getMessages();
   const authorized = isAuthorized(ctx.message.chat.id);
+  console.log(
+    "🚀 ~ file: app.js ~ line 34 ~ bot.command ~ authorized",
+    authorized
+  );
   if (messages && authorized) {
     messages.map((message) => {
       const text = message.name
