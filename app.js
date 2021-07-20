@@ -38,8 +38,9 @@ bot.telegram.setWebhook(`${CURRENT_URL}/bot${process.env.TELEGRAM_TOKEN}`);
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Our new tab!!");
+app.get("/", async (req, res) => {
+  const messages = await getMessages();
+  res.send(messages);
 });
 
 // this unite Express with webHook from Telegraf
